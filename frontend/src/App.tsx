@@ -15,7 +15,10 @@ export default function App() {
 
     try {
       // local host later changer from render 
-      const res = await fetch("http://localhost:3000/recommend", {
+      // const res = await fetch("http://localhost:3000/recommend", {
+      //  from render 
+        fetch("https://movie-recommendations-by-grok.onrender.com/recommend", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input }),
