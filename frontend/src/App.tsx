@@ -7,31 +7,32 @@ export default function App() {
   const [error, setError] = useState("");
 
   const recommend = async () => {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
 
-    setLoading(true);
-    setError("");
-    setMovies([]);
+  setLoading(true);
+  setError("");
+  setMovies([]);
 
-    try {
-      // local host later changer from render 
-      // const res = await fetch("http://localhost:3000/recommend", {
-      //  from render 
-        fetch("https://movie-recommendations-by-grok.onrender.com/recommend", {
-
+  try {
+    // local host delere after render
+    const res = await fetch( //  render 
+      "https://movie-recommendations-by-grok.onrender.com/recommend",
+      {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input }),
-      });
+      }
+    );
 
-      const data = await res.json();
-      setMovies(data.recommendations);
-    } catch {
-      setError("Failed to fetch recommendations. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const data = await res.json(); // res exists now from no ]w
+    setMovies(data.recommendations);
+  } catch {
+    setError("Failed to fetch recommendations. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const quickExamples = [
     "action movies with strong female lead",
