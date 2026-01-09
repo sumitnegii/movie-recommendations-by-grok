@@ -76,6 +76,20 @@ Return ONLY movie names as a list.`,
   }
 });
 
+
+// to check data base 
+app.get("/debug/db", async (req, reply) => {
+  const rows = db
+    .prepare("SELECT * FROM recommendations ORDER BY timestamp DESC")
+    .all();
+
+  return {
+    count: rows.length,
+    data: rows,
+  };
+});
+
+
 app.listen(
   {
     port: PORT,
